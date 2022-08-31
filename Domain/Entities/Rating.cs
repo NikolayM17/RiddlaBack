@@ -1,4 +1,4 @@
-﻿using rofel.Domain.Entities;
+﻿using System;
 
 namespace Domain.Entities
 {

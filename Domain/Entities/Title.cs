@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.Comment;
 using Domain.Enums;
-using rofel.Domain.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace Domain.Entities
 {

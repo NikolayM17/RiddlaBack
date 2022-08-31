@@ -1,8 +1,10 @@
-﻿using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using rofel.Domain.Entities;
+﻿using DAL.Interfaces;
+using Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace rofel.DAL.Repositories
+namespace DAL.Repositories
 {
 	public class BaseRepository<T> : IBaseRepository<T>
 		where T : BaseEntity

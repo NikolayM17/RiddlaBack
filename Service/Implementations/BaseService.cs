@@ -1,17 +1,13 @@
-﻿using Domain.Entities;
-using rofel.DAL;
-using rofel.DAL.Repositories;
-using rofel.Domain.Entities;
-using rofel.Service.Helpers;
+﻿using DAL.Interfaces;
+using DAL.Repositories;
+using Domain.Entities;
+using Service.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace rofel.Service.Implementations
+namespace Service.Implementations
 {
 	public class BaseService<T> : IBaseService<T>
 		where T : BaseEntity

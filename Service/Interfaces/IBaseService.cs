@@ -1,6 +1,9 @@
-﻿using rofel.Domain.Entities;
+﻿using Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace rofel.Service.Implementations
+namespace Service.Implementations
 {
 	public interface IBaseService<T>/* : IDisposable*/
 		where T : BaseEntity

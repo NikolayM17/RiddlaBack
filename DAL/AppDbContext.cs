@@ -2,7 +2,7 @@
 using Domain.Entities.Comment;
 using Microsoft.EntityFrameworkCore;
 
-namespace rofel
+namespace DAL
 {
 	public class AppDbContext : DbContext
     {

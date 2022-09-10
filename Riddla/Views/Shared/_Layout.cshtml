@@ -1,53 +1,176 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Entities
+@using Domain.Entities.ViewModels
+@model UserViewModel
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Riddla</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Riddla.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/index_style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/title_style.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Riddla</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Catalogue" asp-action="Index">Catalogue</a>
-                        </li>
-                        <li class="nav-item">   
-                            <input type="text" placeholder="Search"/>
-                            <!--<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
-                        </li>
-                    </ul>
-                    <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Profile</a>
+    <div class="reg__element">
+        <form method="post" asp-controller="Account" asp-action="Register">
+            <div class="close__button">
+                <a onclick="element_closeButton_click('reg__element')">
+                    <img src="../assets/images/icons_temporary/x_icon.png" alt="x_icon.png">
+                </a>
+            </div>
+            <div class="riddla_logo">
+                <img src="../assets/images/logo.png" alt="logo.png">
+            </div>
+
+            <div class="auth__inputs">
+                <input asp-for="Name" class="login_mail__input" placeholder="Логин">
+                <input asp-for="Email" class="login_mail__input" placeholder="Почта">
+                <div class="password__div">
+                    <input asp-for="Password" type="password" id="password_01" class="password__input" placeholder="Пароль">
+                    <a id="button_01" onclick="passwordView_click('password_01', 'button_01')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
+                </div>
+                <div class="password__div">
+                    <input asp-for="PasswordConfirm" type="password" id="password_02" class="password__input" placeholder="Пароль (повтор)">
+                    <a id="button_02" onclick="passwordView_click('password_02', 'button_02')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
                 </div>
             </div>
-        </nav>
+
+            <div class="reg_auth">
+                <nav>
+                    <input class="nav__link reg__link" type="submit" value="Регистрация"/>
+                    <a class="auth__link" href="#" onclick="reg_auth_navigate('reg__element', 'auth__element')">Вход</a>
+                </nav>
+            </div>
+            <div class="restore_access">
+                <a onclick="restore_click('reg__element')">Восстановить доступ</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="auth__element">
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div class="close__button">
+                <a onclick="element_closeButton_click('auth__element')">
+                    <img src="../assets/images/icons_temporary/x_icon.png" alt="x_icon.png">
+                </a>
+            </div>
+            <div class="riddla_logo">
+                <img src="../assets/images/logo.png" alt="logo.png">
+            </div>
+
+            <div class="auth__inputs">
+                <input asp-for="Name" class="login_mail__input" placeholder="Логин / Почта">
+                <div class="password__div">
+                    <input asp-for="Password" type="password" id="password_012" class="password__input" placeholder="Пароль">
+                    <a id="button_012" onclick="passwordView_click('password_012', 'button_012')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
+                </div>
+            </div>
+
+            <div class="reg_auth">
+                <nav>
+                    <a class="nav__link reg__link" href="#" onclick="reg_auth_navigate('auth__element', 'reg__element')">Регистрация</a>
+                    <input class="auth__link" type="submit" value="Вход" href="#" />
+                </nav>
+            </div>
+            <div class="restore_access">
+                <a onclick="restore_click('auth__element')">Восстановить доступ</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="restore__element">
+        <div class="close__button">
+            <a onclick="element_closeButton_click('restore__element')">
+                <img src="../assets/images/icons_temporary/x_icon.png" alt="x_icon.png">
+            </a>
+        </div>
+        <div class="riddla_logo">
+            <img src="../assets/images/logo.png" alt="logo.png">
+        </div>
+
+        <div class="auth__inputs">
+            <input class="login_mail__input" placeholder="Почта">
+        </div>
+
+        <div class="reg_auth">
+            <nav>
+                <a class="auth__link" href="#">Отправить</a>
+            </nav>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__left">
+                    <div class="header__logo">Riddla</div>
+                    <nav>
+                        <a class="nav__link" asp-controller="Catalogue" asp-action="Index">Каталог</a>
+                        <a class="nav__link" asp-controller="Random" asp-action="Index">Рандом</a>
+                        <a class="nav__link" asp-controller="TopTitles" asp-action="Index">ТОП</a>
+                    </nav>
+                </div>
+                @*@{
+                    var title = new Title();
+*@
+                    <div class="header__search">
+                         @*default__search*@
+                         @*asp-controller="Title" asp-action="Search"*@
+                         @*asp-for="Item2.Name" *@
+                        <form method="post" action="/Title/Search">
+                            <input name="Name" class="search__input" type="text" placeholder="Поиск">
+                                <button type="submit">
+                                    <img src="../assets/images/search/search_icon.png" alt="search_icon.png">
+                                </button>
+                        </form>
+                    </div>
+@*}*@
+
+                <nav>
+                    <a class="nav__link reg__link" href="#" onclick="reg_auth_click('reg__element')">Регистрация</a>
+                    <a class="auth__link" href="#" onclick="reg_auth_click('auth__element')">Вход</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <div class="container">
         <main role="main" class="pb-3">
-            ddd
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer">
         <div class="container">
-            &copy; 2022 - Riddla - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="footer__inner">
+                <div class="footer__year">2022</div>
+                <nav class="footer__info">
+                    <a class="nav__link" asp-controller="Faq" asp-action="Index">FAQ</a>
+                    <a class="nav__link" asp-controller="Rules" asp-action="Index">Правила</a>
+                    <a class="nav__link" asp-controller="UserAgreement" asp-action="Index">Пользовательское соглашение</a>
+                </nav>
+
+                <div class="footer__icons">
+                    <nav class="nav__icons">
+                        <img src="../assets/images/links/18+.png" alt="18+.png">
+
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/vk.png" alt="vk.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/facebook.png" alt="facebook.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/twitter.png" alt="twitter.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/instagram.png" alt="instagram.png"></a>
+                    </nav>
+                </div>
+
+                <div class="footer__theme">
+                    <a class="theme_button">
+                        <img class="theme__icon" src="../assets/images/themes/dark_theme.png" alt="dark_theme.png">
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)*@
+    
+    <script src="~/js/index_script.js"></script>
 </body>
 </html>

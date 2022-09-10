@@ -2,7 +2,7 @@
 using Riddla.Models;
 using System.Diagnostics;
 
-namespace Riddla.Controllers
+namespace Controllers
 {
 	public class HomeController : Controller
 	{

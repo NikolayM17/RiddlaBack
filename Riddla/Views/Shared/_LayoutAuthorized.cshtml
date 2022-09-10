@@ -1,0 +1,90 @@
+﻿@using Domain.Entities
+@model Title
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Riddla</title>
+    <link rel="stylesheet" href="~/css/index_style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/title_style.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__left">
+                    <div class="header__logo">Riddla</div>
+                    <nav>
+                        <a class="nav__link" href="#">Каталог</a>
+                        <a class="nav__link" href="#">Рандом</a>
+                        <a class="nav__link" href="#">ТОП</a>
+                    </nav>
+                </div>
+
+                <div class="header__search">
+                    @*<form method="post" asp-controller="Title" asp-action="Search">
+                        <input asp-for="Name" class="search__input" type="text" placeholder="Поиск">
+                        <button><img src="../assets/images/search/search_icon.png" alt="search_icon.png"></button>
+                    </form>*@
+                    <div class="header__search">
+                        <form method="post" action="/Title/Search">
+                            <input name="Name" class="search__input" type="text" placeholder="Поиск">
+                                <button type="submit">
+                                    <img src="../assets/images/search/search_icon.png" alt="search_icon.png">
+                                </button>
+                        </form>
+                    </div>
+                </div>
+
+                <nav>
+                    <div class="reader">
+                        <a href="profile.html">
+                            <img src="" alt="">
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__year">2022</div>
+                <nav class="footer__info">
+                    <a class="nav__link" href="#">FAQ</a>
+                    <a class="nav__link" href="#">Правила</a>
+                    <a class="nav__link" href="#">Пользовательское соглашение</a>
+                </nav>
+
+                <div class="footer__icons">
+                    <nav class="nav__icons">
+                        <img src="../assets/images/links/18+.png" alt="18+.png">
+
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/vk.png" alt="vk.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/facebook.png" alt="facebook.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/twitter.png" alt="twitter.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/instagram.png" alt="instagram.png"></a>
+                    </nav>
+                </div>
+
+                <div class="footer__theme">
+                    <a class="theme_button">
+                        <img class="theme__icon" src="../assets/images/themes/dark_theme.png" alt="dark_theme.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/script.js"></script>
+</body>
+</html>

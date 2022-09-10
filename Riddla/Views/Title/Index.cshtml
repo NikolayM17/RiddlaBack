@@ -1,0 +1,563 @@
+﻿@using Domain.Entities
+@model Title
+
+@{
+    Layout = "_LayoutAuthorized";
+}
+
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index_style.css">
+    <link rel="stylesheet" href="../css/user_index_style.css">
+    <link rel="stylesheet" href="../css/title_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__left">
+                    <div class="header__logo">
+                        <img src="../assets/images/logo.png" alt="logo.png">
+                    </div>
+                    <nav>
+                        <a class="nav__link" href="#">Каталог</a>
+                        <a class="nav__link" href="#">Рандом</a>
+                        <a class="nav__link" href="#">ТОП</a>
+                    </nav>
+                </div>
+
+                <div class="header__search">
+                    <input class="search__input" type="text" placeholder="Поиск">
+                    <img src="../assets/images/search/search_icon.png" alt="search_icon.png">
+                </div>
+
+                <nav>
+                    <div class="reader">
+                        <a href="profile.html">
+                            <img src="" alt="">
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+*@
+    <div class="title">
+        <div class="container">
+            <div class="title__inner">
+                <div class="title__leftpart">
+                    <img src="/assets/images/titles/title (@Model.Id).png" alt="title (@Model.Id).png">
+                    
+                    <div class="read__button">
+                        <button>Читать</button>
+                    </div>
+                    <div class="tolist__button">
+                        <button>В список</button>
+                    </div>
+
+                    <div class="title__info">
+                        <div class="title__type">
+                            <div class="type__name">Тип</div>
+                            @Model.TitleType.ToString()
+                            @*Корея*@
+                        </div>
+                        <div class="title__date">
+                            <div class="date__name">Дата выхода</div>
+                            @Model.Year
+                            @*2021*@
+                        </div>
+                        <div class="title__o_status">
+                            <div class="o_status__name">Статус оригинала</div>
+                            @Model.StatusOriginal.ToString()
+                            @*Онгоинг*@
+                        </div>
+                        <div class="title__t_status">
+                            <div class="t_status__name">Статус перевода</div>
+                            @Model.StatusTranslation.ToString()
+                            @*Переводится*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title__center">
+                    <div class="title__name">
+                        <div class="ru__name">@Model.Name @*Я не регрессор!*@</div>
+                        <div class="en__name">@Model.EnName @*I'm not a Regressor*@</div>
+                    </div>
+                    
+                    <nav class="title__nav">
+                        <a href="#tab_01" onmouseenter="nav__item_mouseenter(this)" onmouseleave="nav__item_mouseleave(this)" onclick="nav__item_click(this)" tabindex="0" class="nav__item" id="01">Описание</a>
+                        <a href="#tab_02" onmouseenter="nav__item_mouseenter(this)" onmouseleave="nav__item_mouseleave(this)" onclick="nav__item_click(this)" tabindex="0" class="nav__item" id="02">
+                            Главы
+                            @*@if (Model.Chapters.Count > 0)
+                            {*@
+                                <div class="item__count">
+                                    @Model.Chapters.Count
+                                </div>
+                            @*}*@
+                        </a>
+                        <a href="#tab_03" onmouseenter="nav__item_mouseenter(this)" onmouseleave="nav__item_mouseleave(this)" onclick="nav__item_click(this)" tabindex="0" class="nav__item" id="03">
+                            Комментарии
+                            @*@if (Model.TitleComments.Count > 0)
+                            {*@
+                                <div class="item__count">
+                                    @Model.TitleComments.Count
+                                </div>
+                            @*}*@
+                        </a>
+                    </nav>
+
+                    <div class="title__nav__data">
+                        <div class="description__tab tab__item" id="tab_01">
+                            <div class="description__text" id="tab_01_text">
+                                @Model.Description
+
+                                @*<p>Однажды перед моими глазами появилась серебровласая богиня.</p>
+                                <p>[Звезда, Бросающая Вызов Небесам. Существо, идущее наперекор судьбе. Единственный и неповторимый спаситель мира, которому суждено было встретить свой конец].</p>
+                                <p>Что за чушь несет эта женщина?</p>
+                                <p>[Вы, должно быть, регрессор.]</p>
+                                <p>«... Что?»</p>
+                                <p>Нет, я не регрессор.</p>*@
+                            </div>
+                            <!-- <a href="#tab_01_text" class="more__button">Подробнее</a> -->
+                        </div>
+
+                        <div class="chapters__tab tab__item" id="tab_02">
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 19</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 18</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 17</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 16</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 15</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 14</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 13</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 12</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 11</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 10</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 9</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 8</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 7</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 6</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 5</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 4</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 3</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 2</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 1</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chapter">
+                                <div class="chapter__number"><a href="#">Том 1. Глава 0</a></div>
+
+                                <div class="chapter__statistics">
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item chapter__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comments__tab tab__item" id="tab_03">
+                            <div class="comment">
+                                <div class="comment__top">
+                                    <a href="#">
+                                        <img src="" alt="" class="user__img">
+                                    </a>
+    
+                                    <div class="comment__info">
+                                        <div class="comment__author">Бессмертный Легион</div>
+                                        <div class="comment__date">18.10.2021</div>
+                                    </div>
+                                </div>
+
+                                <div class="comment__text">
+                                    Можно описание подвести?
+                                </div>
+
+                                <div class="comment__statistics">
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comment">
+                                <div class="comment__top">
+                                    <a href="#">
+                                        <img src="" alt="" class="user__img">
+                                    </a>
+    
+                                    <div class="comment__info">
+                                        <div class="comment__author">Скитающийся дизер</div>
+                                        <div class="comment__date">12.10.2021</div>
+                                    </div>
+                                </div>
+
+                                <div class="comment__text">
+                                    я прочитал до 200-х глав и я с уверенностью могу сказать, что это
+                                    божественно. идея, подача, персонажи, комедия, сюжет все на высшем
+                                    уровне. главный герой сложный и хорошо прописанный персонаж. если и
+                                    отмечать какие то минусы то это то что романтика со временем идет в сторону
+                                    гарема, но она в любом случае очень качественно написана да и "гарем"
+                                    скорее всего не будет больше трех и очень вероятно что останется на 2
+                                </div>
+
+                                <div class="comment__statistics">
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="comment">
+                                <div class="comment__top">
+                                    <a href="#">
+                                        <img src="" alt="" class="user__img">
+                                    </a>
+    
+                                    <div class="comment__info">
+                                        <div class="comment__author">Flash_P0int</div>
+                                        <div class="comment__date">12.10.2021</div>
+                                    </div>
+                                </div>
+
+                                <div class="comment__text">
+                                    Довольно оригинальное начало и по прочитанным главам могу сказать что это и отличная комедия с некоторыми оригинальными идеями и оригинальным главным персонажем. Кто бросил в начале первой главы, не дочитав, советую закончить начатое, так как самое интересное начинается в конце первой главы :3
+                                </div>
+
+                                <div class="comment__statistics">
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/like.png" alt="like.png">
+                                        <div class="likes_count">20 075</div>
+                                    </div>
+                                    <div class="statistics__item comment__stat__item">
+                                        <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                        <div class="comments_count">499</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="title__rightpart">
+                    <div class="title__statistics">
+                        <div class="title_stat__item">
+                            <img src="/assets/images/statistics/star_icon.png" alt="star_icon.png">
+                            <div class="item_count">
+                                4.79
+                                <div class="users__count">24</div>
+                            </div>
+                        </div>
+                        <div class="title_stat__item">
+                            <img src="/assets/images/statistics/bookmark_icon.png" alt="bookmark_icon.png">
+                            381
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@*
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__year">2022</div>
+                <nav class="footer__info">
+                    <a class="nav__link" href="#">FAQ</a>
+                    <a class="nav__link" href="#">Правила</a>
+                    <a class="nav__link" href="#">Пользовательское соглашение</a>
+                </nav>
+
+                <div class="footer__icons">
+                    <nav class="nav__icons">
+                        <!-- <a class="nav__link nav__icon" href="#"> -->
+                            <img src="../assets/images/links/18+.png" alt="18+.png">
+                        <!-- </a> -->
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/vk.png" alt="vk.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/facebook.png" alt="facebook.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/twitter.png" alt="twitter.png"></a>
+                        <a class="nav__link nav__icon" href="#"><img src="../assets/images/links/instagram.png" alt="instagram.png"></a>
+                    </nav>
+                </div>
+
+                <div class="footer__theme">
+                    <a class="theme_button">
+                        <img class="theme__icon" src="../assets/images/themes/dark_theme.png" alt="dark_theme.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/script.js"></script>
+</body>
+*@

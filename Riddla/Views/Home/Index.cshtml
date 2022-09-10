@@ -2,7 +2,147 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="intro">
+        <div class="left_side">
+            <div class="pop_nov">
+                <div class="pop_nov__inner">
+                    <div class="pop_nov__title">Популярные новинки</div>
+                    <div class="pop_nov__items">
+                        @for (var i = 1; i < 7; i++)
+                        {
+                            <div class="item_image">
+                                <a href="/Title/Index/@i" *@ @*asp-controller="Title" asp-action="Index" asp-route-id="@i"*@>
+                                    <img src="../assets/images/titles/title (@i).png" alt="title (@i).png">
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="last_news">
+                <div class="last_news__inner">
+                    <div class="last_news__title">Последние новости</div>
+                    <div class="last_news__items">
+                        @for (var i = 1; i < 4; i++)
+                        {
+                            <div class="reader">
+                                <div class="reader__info">
+                                    <div class="reader__title">
+                                        <a href="#">Обновление: расширение функционала уведомлений</a>
+                                    </div>
+                                
+                                    <div class="reader__statistics">
+                                        <div class="statistics__item reader__date">
+                                            <img src="../assets/images/statistics/date.png" alt="date.png">
+                                            <div class="date_count">09.08.2022</div>
+                                        </div>
+                                        <div class="statistics__item reader__views">
+                                            <img src="../assets/images/statistics/view.png" alt="view.png">
+                                            <div class="views_count">39 291</div>
+                                        </div>
+                                        <div class="statistics__item reader__likes">
+                                            <img src="../assets/images/statistics/like.png" alt="like.png">
+                                            <div class="likes_count">20 075</div>
+                                        </div>
+                                        <div class="statistics__item reader__comments">
+                                            <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                            <div class="comments_count">499</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right_side">
+            <div class="top_day">
+                <div class="top_day__title">ТОП дня</div>
+                <div class="top_day__items">
+                    @for (var i = 1; i < 7; i++)
+                    {
+                        <div class="item_image">
+                                <a href="html/title.html">
+                                    <img src="../assets/images/titles/title (@i).png" alt="title (@i).png">
+                                </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="top_users">
+                <div class="top_readers">
+                        <div class="top_readers__title">ТОП читателей</div>
+                        <div class="top_readers__items">
+                            @for (var i = 1; i < 6; i++)
+                            {
+                                <div class="reader">
+                                    <a href="#@i">
+                                        <img src="" alt="">
+                                    </a>
+                                    
+                                    <div class="reader__info">
+                                        <div class="reader__title">
+                                            <a href="#">NoName</a>
+                                        </div>
+    
+                                        <div class="reader__statistics">
+                                            <div class="statistics__item reader__views">
+                                                <img src="../assets/images/statistics/view.png" alt="view.png">
+                                            <div class="views_count">39 291</div>
+                                            </div>
+                                            <div class="statistics__item reader__likes">
+                                                <img src="../assets/images/statistics/like.png" alt="like.png">
+                                            <div class="likes_count">20 075</div>
+                                            </div>
+                                            <div class="statistics__item reader__comments">
+                                                <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                            <div class="comments_count">499</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                </div>
+                <div class="top_translators">
+                        <div class="top_readers__title">ТОП переводчиков</div>
+                        <div class="top_readers__items">
+                            @for (var i = 1; i < 6; i++)
+                            {
+                                <div class="reader">
+                                    <a href="#@i">
+                                        <img src="" alt="">
+                                    </a>
+                                    
+                                    <div class="reader__info">
+                                        <div class="reader__title">
+                                            <a href="#">NoName</a>
+                                        </div>
+    
+                                        <div class="reader__statistics">
+                                            <div class="statistics__item reader__views">
+                                                <img src="../assets/images/statistics/view.png" alt="view.png">
+                                            <div class="views_count">39 291</div>
+                                            </div>
+                                            <div class="statistics__item reader__likes">
+                                                <img src="../assets/images/statistics/like.png" alt="like.png">
+                                            <div class="likes_count">20 075</div>
+                                            </div>
+                                            <div class="statistics__item reader__comments">
+                                                <img src="../assets/images/statistics/comment.png" alt="comment.png">
+                                            <div class="comments_count">499</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using DAL;
+
+namespace Domain.Entities
 {
 	public class Team : BaseEntity
 	{
@@ -11,6 +13,12 @@
 
 		public List<User> Users { get; set; } = new();
 		public List<Title> Titles { get; set; } = new();
+
+		public override void FillLists(AppDbContext db)
+		{
+			Users.AddRange(db.Users);
+			Titles.AddRange(db.Titles);
+		}
 
 		public override void UpdateData(object entity)
 		{

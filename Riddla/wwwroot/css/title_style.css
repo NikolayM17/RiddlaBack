@@ -226,6 +226,83 @@ a:hover {
     border-radius: 20px;
 }
 
+.comment__input_div {
+    display: block;
+
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.comment__input {
+    background-color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    border: 2px solid #b4b4b4;
+    border-radius: 10px;
+    padding: 7px 12px;
+    width: 100%;
+    max-width: 100%;
+
+    height: 100px;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+    initial-letter-wrap: all;
+    word-wrap: break-word;
+
+    resize: none;
+}
+
+.comment__input::-webkit-scrollbar {
+    width: 7px;
+}
+
+.comment__input::-webkit-scrollbar-track {
+    background: none;
+}
+
+.comment__input::-webkit-scrollbar-thumb {
+    background-color: rgba(180, 180, 180, 0.5);
+    border-radius: 20px;
+}
+
+.comment__input:focus {
+    outline: none;
+
+    border-color: white;
+    color: white;
+}
+
+.comment__send {
+    display: block;
+
+    /*margin-left: auto;
+    margin-right: 0;*/
+
+    margin: 0 0 50px auto;
+
+    color: #141437;
+
+    font-family: inherit;
+    font-size: inherit;
+
+    background-color: #b4b4b4;
+    padding: 7px 12px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: background-color .15s linear;
+}
+
+.comment__send:hover {
+    background-color: white;
+}
+
 .comment {
     display: flex;
     flex-direction: column;
@@ -248,7 +325,7 @@ a:hover {
 
 .user__img {
     border: 2px solid #b4b4b4;
-    border-radius: 10px;
+    border-radius: 50px;
 
     padding: 20px;
     margin: 0 15px 0 0;

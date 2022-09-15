@@ -10,9 +10,9 @@ namespace Domain.Entities
 		public string? Name { get; set; }
 		public string? EnName { get; set; }
 		public string? Description { get; set; }
-		public int? AverageRating { get; set; }
+		/*public int? AverageRating { get; set; }
 		public int? NumberOfRatings { get; set; }
-		public int? NumberOfBookmarks { get; set; }
+		public int? NumberOfBookmarks { get; set; }*/
 		public int? Year { get; set; }
 		public /*byte[]*/ string? Image { get; set; }
 		public TitleType? TitleType { get; set; }
@@ -25,12 +25,14 @@ namespace Domain.Entities
 		public List<TitleComment> TitleComments { get; set; } = new();
 
 		public List<Team> Teams { get; set; } = new();
+		public List<Genre> Genres { get; set; } = new();
+		public List<Tag> Tag { get; set; } = new();
 
 		public override void FillLists(AppDbContext db)
 		{
-			Chapters.Add(db.Chapters.First());
-			Ratings.Add(db.Ratings.First());
-			Bookmarks.Add(db.Bookmarks.First());
+			Chapters.AddRange(db.Chapters);
+			Ratings.AddRange(db.Ratings);
+			Bookmarks.AddRange(db.Bookmarks);
 			TitleComments.AddRange(db.TitleComments);
 
 			Teams.AddRange(db.Teams);
@@ -43,9 +45,9 @@ namespace Domain.Entities
 				Name = title.Name;
 				EnName = title.EnName;
 				Description = title.Description;
-				AverageRating = title.AverageRating;
+				/*AverageRating = title.AverageRating;
 				NumberOfRatings = title.NumberOfRatings;
-				NumberOfBookmarks = title.NumberOfBookmarks;
+				NumberOfBookmarks = title.NumberOfBookmarks;*/
 				Year = title.Year;
 				Image = title.Image;
 				TitleType = title.TitleType;

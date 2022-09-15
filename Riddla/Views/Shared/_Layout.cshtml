@@ -1,6 +1,6 @@
-﻿@using Domain.Entities
+﻿@*@using Domain.Entities
 @using Domain.Entities.ViewModels
-@model UserViewModel
+@model UserViewModel*@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +10,17 @@
     <title>@ViewData["Title"] - Riddla</title>
     <link rel="stylesheet" href="~/css/index_style.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/title_style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/catalogue_style.css" asp-append-version="true" />
 </head>
 <body>
     <div class="reg__element">
-        <form method="post" asp-controller="Account" asp-action="Register">
+        <form method="post" action="/Account/Register">
+            @*asp-controller="Account" asp-action="Register"*@
+            @*asp-for="Name"*@ 
+            @*asp-for="Email"*@
+            @*asp-for="Password"*@
+            @*asp-for="PasswordConfirm"*@
+
             <div class="close__button">
                 <a onclick="element_closeButton_click('reg__element')">
                     <img src="../assets/images/icons_temporary/x_icon.png" alt="x_icon.png">
@@ -24,14 +31,14 @@
             </div>
 
             <div class="auth__inputs">
-                <input asp-for="Name" class="login_mail__input" placeholder="Логин">
-                <input asp-for="Email" class="login_mail__input" placeholder="Почта">
+                <input name="Name" class="login_mail__input" placeholder="Логин">
+                <input name="Email" class="login_mail__input" placeholder="Почта">
                 <div class="password__div">
-                    <input asp-for="Password" type="password" id="password_01" class="password__input" placeholder="Пароль">
+                    <input name="Password" type="password" id="password_01" class="password__input" placeholder="Пароль">
                     <a id="button_01" onclick="passwordView_click('password_01', 'button_01')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
                 </div>
                 <div class="password__div">
-                    <input asp-for="PasswordConfirm" type="password" id="password_02" class="password__input" placeholder="Пароль (повтор)">
+                    <input name="PasswordConfirm" type="password" id="password_02" class="password__input" placeholder="Пароль (повтор)">
                     <a id="button_02" onclick="passwordView_click('password_02', 'button_02')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
                 </div>
             </div>
@@ -49,7 +56,12 @@
     </div>
 
     <div class="auth__element">
-        <form method="post" asp-controller="Account" asp-action="Login">
+        <form method="post" action="/Account/Login">
+            @*asp-controller="Account" asp-action="Login"*@
+            @*asp-for="Name"*@
+            @* / Почта*@
+            @*asp-for="Password"*@
+
             <div class="close__button">
                 <a onclick="element_closeButton_click('auth__element')">
                     <img src="../assets/images/icons_temporary/x_icon.png" alt="x_icon.png">
@@ -60,9 +72,9 @@
             </div>
 
             <div class="auth__inputs">
-                <input asp-for="Name" class="login_mail__input" placeholder="Логин / Почта">
+                <input name="Name" class="login_mail__input" placeholder="Логин">
                 <div class="password__div">
-                    <input asp-for="Password" type="password" id="password_012" class="password__input" placeholder="Пароль">
+                    <input name="Password" type="password" id="password_012" class="password__input" placeholder="Пароль">
                     <a id="button_012" onclick="passwordView_click('password_012', 'button_012')"><img src="../assets/images/statistics/view.png" alt="view.png"></a>
                 </div>
             </div>
@@ -118,8 +130,8 @@
                          @*default__search*@
                          @*asp-controller="Title" asp-action="Search"*@
                          @*asp-for="Item2.Name" *@
-                        <form method="post" action="/Title/Search">
-                            <input name="Name" class="search__input" type="text" placeholder="Поиск">
+                        <form method="post" action="/Catalogue/Search">
+                            <input name="query" class="search__input" type="text" placeholder="Поиск">
                                 <button type="submit">
                                     <img src="../assets/images/search/search_icon.png" alt="search_icon.png">
                                 </button>

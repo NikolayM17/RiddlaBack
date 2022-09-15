@@ -76,3 +76,23 @@ function passwordView_click(elemId, elemSenderId) {
         elemSender.style.opacity = 0.7;
     }
 }
+
+function filter__item_click(itemId) {
+    let elem = document.querySelector("#" + itemId);
+    let elemVisibility = elem.style.visibility;
+
+    console.log(elemVisibility);
+
+    let elems = document.querySelectorAll(".ul");
+
+    console.log(elems.length);
+
+    elems.forEach(elem => elem.style.visibility = "hidden"/*, elem.style.display = "none"*/, elem.style.zIndex = 0);
+
+
+    if (elemVisibility != "visible") {
+        elem.style.visibility = "visible";
+        // elem.style.display = "block";
+        elem.style.zIndex = 5;
+    }
+}

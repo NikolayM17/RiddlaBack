@@ -17,23 +17,26 @@ namespace DAL
 			}
 		}
 
-		public DbSet<ArticleComment> ArticleComments { get; set; }
-		public DbSet<ChapterComment> ChapterComments { get; set; }
-		public DbSet<TitleComment> TitleComments { get; set; }
+		public DbSet<Genre> Genres { get; set; } = null!;
+		public DbSet<Tag> Tags { get; set; } = null!;
 
-		public DbSet<Article> Articles { get; set; }
-		public DbSet<Bookmark> Bookmarks { get; set; }
-		public DbSet<Chapter> Chapters { get; set; }
-		public DbSet<Rating> Ratings { get; set; }
-		public DbSet<Statistics> Statistics { get; set; }
-		public DbSet<Team> Teams { get; set; }
-		public DbSet<Title> Titles { get; set; }
-		public DbSet<User> Users { get; set; }
+		public DbSet<ArticleComment> ArticleComments { get; set; } = null!;
+		public DbSet<ChapterComment> ChapterComments { get; set; } = null!;
+		public DbSet<TitleComment> TitleComments { get; set; } = null!;
+
+		public DbSet<Article> Articles { get; set; } = null!;
+		public DbSet<Bookmark> Bookmarks { get; set; } = null!;
+		public DbSet<Chapter> Chapters { get; set; } = null!;
+		public DbSet<Rating> Ratings { get; set; } = null!;
+		public DbSet<Statistics> Statistics { get; set; } = null!;
+		public DbSet<Team> Teams { get; set; } = null!;
+		public DbSet<Title> Titles { get; set; } = null!;
+		public DbSet<User> Users { get; set; } = null!;
 
 		public AppDbContext()
 		{
-			/*Database.EnsureDeleted();
-			Database.EnsureCreated();*/
+			/*Database.EnsureDeleted();*/
+			Database.EnsureCreated();
 
 			/*Users.Add(new User());*/
 
@@ -49,9 +52,8 @@ namespace DAL
 		{
 			await CreatePrimaryData();
 
-			/*await FillUsers();*/
-
-			/*await FillDbSet<User, Team>();*/
+			FillGenres();
+			FillTags();
 
 			FillUsers();
 			FillBookmarks();
@@ -71,6 +73,9 @@ namespace DAL
 
 		private async Task CreatePrimaryData()
 		{
+			await Genres.AddRangeAsync(CreateGenres());
+			await Tags.AddRangeAsync(CreateTags());
+
 			await Users.AddRangeAsync(CreateUsers());
 			await Bookmarks.AddRangeAsync(CreateBookmarks());
 			await Titles.AddRangeAsync(CreateTitles());
@@ -178,6 +183,52 @@ await SaveChangesAsync();
 			await SaveChangesAsync();
 		}*/
 
+		private IEnumerable<Genre> CreateGenres()
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				yield return new Genre
+				{
+					Name = $"DbGenre_{i}"
+				};
+			}
+		}
+		private void FillGenres()
+		{
+			foreach (var genre in Genres)
+			{
+				genre.FillLists(this);
+				Genres.Update(genre);
+			}
+
+			Genres.UpdateRange();
+
+			SaveChanges();
+		}
+
+		private IEnumerable<Tag> CreateTags()
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				yield return new Tag
+				{
+					Name = $"DbTag_{i}"
+				};
+			}
+		}
+		private void FillTags()
+		{
+			foreach (var tag in Tags)
+			{
+				tag.FillLists(this);
+				Tags.Update(tag);
+			}
+
+			Tags.UpdateRange();
+
+			SaveChanges();
+		}
+
 		private IEnumerable<User> CreateUsers()
 		{
 			for (int i = 0; i < 3; i++)
@@ -186,7 +237,8 @@ await SaveChangesAsync();
 				{
 					Name = $"DbUser_{i}",
 					Password = "12345",
-					UserType = UserType.Reader
+					UserType = UserType.Reader/*,
+					Image*/
 				};
 			}
 		}
@@ -243,7 +295,8 @@ await SaveChangesAsync();
 			{
 				yield return new Team
 				{
-					Name = $"DbTeam_{i}"
+					Name = $"DbTeam_{i}"/*,
+					Image*/
 				};
 			}
 		}
@@ -391,7 +444,7 @@ await SaveChangesAsync();
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=riddladb3;Trusted_Connection=True;MultipleActiveResultSets=true;");
+			optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=riddladb4;Trusted_Connection=True;MultipleActiveResultSets=true;");
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -400,6 +453,29 @@ await SaveChangesAsync();
 				.HasOne(p => p.Company)
 				.WithMany(t => t.Users)
 				.OnDelete(DeleteBehavior.SetNull);*/
+
+			/*modelBuilder.Entity<>().Navigation(e => e.ColorScheme).AutoInclude();*/
+
+			modelBuilder.Entity<User>().Navigation(u => u.Ratings).AutoInclude();
+
+			modelBuilder.Entity<Title>().Navigation(t => t.Ratings).AutoInclude();
+			modelBuilder.Entity<Title>().Navigation(t => t.Bookmarks).AutoInclude();
+			modelBuilder.Entity<Title>().Navigation(t => t.Chapters).AutoInclude();
+			modelBuilder.Entity<Title>().Navigation(t => t.Genres).AutoInclude();
+			modelBuilder.Entity<Title>().Navigation(t => t.Tag).AutoInclude();
+
+
+			modelBuilder.Entity<Genre>()
+				.HasMany(genre => genre.Titles)
+				.WithMany(title => title.Genres)
+				.UsingEntity(builder => builder.ToTable("GenreTitleConnection"));
+
+			modelBuilder.Entity<Tag>()
+				.HasMany(tag => tag.Titles)
+				.WithMany(title => title.Tag)
+				.UsingEntity(builder => builder.ToTable("TagTitleConnection"));
+
+
 
 			modelBuilder.Entity<User>()
 				.HasMany(user => user.Teams)
@@ -515,14 +591,14 @@ await SaveChangesAsync();
 
 
 			/*modelBuilder.Entity<User>(builder =>
-            {
-                builder.HasKey(user => user.Id);
+			{
+				builder.HasKey(user => user.Id);
 
-                builder.HasData(new User
-                {
-                    Name = "OnCreatingUser"
-                });
-            });*/
+				builder.HasData(new User
+				{
+					Name = "OnCreatingUser"
+				});
+			});*/
 		}
 	}
 }

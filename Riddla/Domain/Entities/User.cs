@@ -1,7 +1,6 @@
 ﻿using DAL;
 using Domain.Entities.Comment;
 using Domain.Enums;
-using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
@@ -15,27 +14,16 @@ namespace Domain.Entities
 		}*/
 
 		/*public int Id { get; set; }*/
-
-		/*[Required(ErrorMessage = "Укажите имя")]
-		[MaxLength(20, ErrorMessage = "Имя должно иметь длину меньше 20 символов")]
-		[MinLength(3, ErrorMessage = "Имя должно иметь длину больше 3 символов")]*/
 		public string? Name { get; set; }
-
-		/*[DataType(DataType.Password)]
-		[Required(ErrorMessage = "Укажите пароль")]
-		[MinLength(6, ErrorMessage = "Пароль должен иметь длину больше 6 символов")]*/
 		public string? Password { get; set; }
-
-		/*[Required(ErrorMessage = "Укажите почту")]
-		[RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]*/
 		public string? Email { get; set; }
 		public /*byte[]*/ string? Image { get; set; }
 		public UserType? UserType { get; set; }
 
 		public int? StatisticsId { get; set; }
-		public Statistics? Statistics { get; set; }
+		public Statistics Statistics { get; set; }
 
-		public List<ChapterComment> ChapterComments { get; set; } = new();
+		public List<ChapterComment> ChapterComments  { get; set; } = new();
 		public List<TitleComment> TitleComments { get; set; } = new();
 		public List<Article> Articles { get; set; } = new();
 		public List<ArticleComment> ArticleComments { get; set; } = new();

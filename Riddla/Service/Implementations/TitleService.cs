@@ -1,9 +1,8 @@
 ﻿using Domain.Entities;
 using Riddla.DAL.Repositories;
 using Service.Helpers;
-using Service.Implementations;
 
-namespace Riddla.Service.Implementations
+namespace Service.Implementations
 {
 	public class TitleService : BaseService<Title>, IBaseService<Title>
 	{

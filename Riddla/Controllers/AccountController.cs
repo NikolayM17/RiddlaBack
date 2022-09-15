@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Service.Implementations;
 using Domain.Entities;
 using Domain.Entities.ViewModels;
 using Riddla.Service.Implementations;

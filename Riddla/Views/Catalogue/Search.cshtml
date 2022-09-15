@@ -1,0 +1,25 @@
+﻿@using Domain.Entities
+@model IQueryable<Title>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="catalogue">
+        <div class="header__search">
+            <input on class="search__input" type="text" placeholder="Поиск">
+            <button><img src="../assets/images/search/search_icon.png" alt="search_icon.png"></button>
+        </div>
+         <div class="catalogue__titles">
+             @foreach (var item in Model)
+            {
+                <a class="title__item" href="~/Title/Index/@item.Id">
+                    @*asp-controller="Title" asp-action="Index"*@
+                     <img src="../assets/images/titles/title (@item.Id).png" alt="title (@item.Id).png">
+                    <div class="title__name">@item.Name</div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

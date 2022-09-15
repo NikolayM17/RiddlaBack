@@ -24,14 +24,14 @@ namespace Domain.Entities
 
 		public override void FillLists(AppDbContext db)
 		{
-			Chapters.Add(db.Chapters.First());
-			ChapterComments.Add(db.ChapterComments.First());
-			Articles.Add(db.Articles.First());
-			ArticleComments.Add(db.ArticleComments.First());
-			Titles.Add(db.Titles.First());
-			TitleComments.Add(db.TitleComments.First());
-			Users.Add(db.Users.First());
-			Teams.Add(db.Teams.First());
+			Chapters.AddRange(db.Chapters);
+			ChapterComments.AddRange(db.ChapterComments);
+			Articles.AddRange(db.Articles);
+			ArticleComments.AddRange(db.ArticleComments);
+			Titles.AddRange(db.Titles);
+			TitleComments.AddRange(db.TitleComments);
+			Users.AddRange(db.Users);
+			Teams.AddRange(db.Teams);
 		}
 
 		public override void UpdateData(object entity)
